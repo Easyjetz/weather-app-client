@@ -3,11 +3,11 @@ import { useMemo } from "react";
 import { bindActionCreators } from "redux";
 
 export function useActions(actions) {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     const boundActions = useMemo(() => {
-        return bindActionCreators(actions, dispatch);
-    }, []);
+        return bindActionCreators(actions, dispatch)
+    }, [])
 
-    return boundActions;
+    return boundActions
 }
