@@ -5,38 +5,8 @@ const initialState = {
     weatherRequest: false,
     forecastRequest: false,
     weatherInfo: null,
-    forecast: {
-        day1: {
-            name: "",
-            main: {},
-            wind: 0,
-        },
-
-        day2: {
-            name: "",
-            main: {},
-            wind: 0,
-        },
-
-        day3: {
-            name: "",
-            main: {},
-            wind: 0,
-        },
-
-        day4: {
-            name: "",
-            main: {},
-            wind: 0,
-        },
-
-        day5: {
-            name: "",
-            main: {},
-            wind: 0,
-        },
-        inputValue: '',
-    }
+    inputValue: '',
+    forecast: null
 };
 
 
@@ -70,9 +40,14 @@ export function reducer(state = initialState, action) {
             }
 
         case types.RECEIVE_FORECAST_INFO:
+            // не знаю где должна быть обработка данных
+
+            console.log(action.payload);
             function getDayWeather(dayForecast, date) {
                 const weather = {};
                 const KELVIN = -273.15;
+
+
 
 
                 dayForecast.weather.map((el) => {
@@ -93,51 +68,83 @@ export function reducer(state = initialState, action) {
             const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
             const todayNumberInWeek = new Date().getDay();
             const forecastData = action.payload.list;
+            const forecast = {
+                day1: {
+                    name: "",
+                    main: {},
+                    wind: 0,
+                },
 
-            console.log(forecastData);
+                day2: {
+                    name: "",
+                    main: {},
+                    wind: 0,
+                },
+
+                day3: {
+                    name: "",
+                    main: {},
+                    wind: 0,
+                },
+
+                day4: {
+                    name: "",
+                    main: {},
+                    wind: 0,
+                },
+
+                day5: {
+                    name: "",
+                    main: {},
+                    wind: 0,
+                },
+
+            }
 
 
             for (let j = 0; j < forecastData.length; j++) {
                 const date = new Date(forecastData[j].dt_txt).getDay();
+
                 if (
                     (date === todayNumberInWeek + 1 ||
                         (todayNumberInWeek === 6 && date === 0)) &&
-                    !state.forecast.day1.name
+                    !forecast.day1.name
                 ) {
                     const weather = getDayWeather(forecastData[j], date);
-                    state.forecast.day1 = weather;
+                    forecast.day1 = weather;
                 } else if (
-                    !!state.forecast.day1.name &&
-                    !state.forecast.day2.name &&
-                    days[date] !== state.forecast.day1.name
+                    !!forecast.day1.name &&
+                    !forecast.day2.name &&
+                    days[date] !== forecast.day1.name
                 ) {
                     const weather = getDayWeather(forecastData[j], date);
-                    state.forecast.day2 = weather;
+                    forecast.day2 = weather;
                 } else if (
-                    !!state.forecast.day2.name &&
-                    !state.forecast.day3.name &&
-                    days[date] !== state.forecast.day2.name
+                    !!forecast.day2.name &&
+                    !forecast.day3.name &&
+                    days[date] !== forecast.day2.name
                 ) {
                     const weather = getDayWeather(forecastData[j], date);
-                    state.forecast.day3 = weather;
+                    forecast.day3 = weather;
                 } else if (
-                    !!state.forecast.day3.name &&
-                    !state.forecast.day4.name &&
-                    days[date] !== state.forecast.day3.name
+                    !!forecast.day3.name &&
+                    !forecast.day4.name &&
+                    days[date] !== forecast.day3.name
                 ) {
                     const weather = getDayWeather(forecastData[j], date);
-                    state.forecast.day4 = weather;
+                    forecast.day4 = weather;
                 } else if (
-                    !!state.forecast.day4.name &&
-                    !state.forecast.day5.name &&
-                    days[date] !== state.forecast.day4.name
+                    !!forecast.day4.name &&
+                    !forecast.day5.name &&
+                    days[date] !== forecast.day4.name
                 ) {
                     const weather = getDayWeather(forecastData[j], date);
-                    state.forecast.day5 = weather;
+                    forecast.day5 = weather;
                 }
             }
             return {
                 ...state,
+                forecast: forecast,
                 forecastRequest: 'success'
             }
 

@@ -8,12 +8,6 @@ export function WeatherCommonInfo(props) {
 
   const temperature = Math.round(main.temp + KELVIN);
 
-  const forecast = useSelector(CardSelectors.forecast);
-  const forecastRequest = useSelector(CardSelectors.forecastRequest);
-
-  if (forecastRequest === "success") {
-    console.log(forecast);
-  }
   return (
     <div className="infoWrapper">
       <div className="cityName">{name}</div>

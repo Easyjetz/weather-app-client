@@ -13,6 +13,8 @@ export const receiveForecastInfo = data => {
     return { type: types.RECEIVE_FORECAST_INFO, payload: { ...data } }
 }
 
+// повторяются запросы
+
 export function cityFetchWeather(city) {
     const API_KEY = 'b8c2cd9097a14c0f326a82678b521b25';
     const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
@@ -33,14 +35,19 @@ export function cityFetchWeather(city) {
 
 export function geolocationFetchWeather(lat, lon) {
     const API_KEY = 'b8c2cd9097a14c0f326a82678b521b25';
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+    const geoWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+    const forecastWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
     return dispatch => {
         dispatch(fetchWeatherRequest());
-        fetch(url)
+        fetch(geoWeatherUrl)
             .then(response => response.json()).then(data => dispatch(receiveWeatherInfo(data)))
             .catch(err => {
                 console.log(err);
-            })
+            });
+
+        fetch(forecastWeatherUrl)
+            .then(response => response.json()).then(data => dispatch(receiveForecastInfo(data)))
+            .catch(err => console.log(err));
     }
 }

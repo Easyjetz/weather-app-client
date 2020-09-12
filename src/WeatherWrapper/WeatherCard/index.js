@@ -4,6 +4,7 @@ import { WeatherCommonInfo } from "./WeatherCommonInfo";
 import { useSelector } from "react-redux";
 import { useActions } from "../../store";
 import { CardActions, CardSelectors } from "../../store/WeatherCard";
+import { WeatherForecast } from "./WeatherForecast";
 
 
 export function WeatherCard({ position }) {
@@ -11,6 +12,7 @@ export function WeatherCard({ position }) {
     const { latitude, longitude } = position;
 
     const weatherRequest = useSelector(CardSelectors.weatherRequest);
+    const forecastRequest = useSelector(CardSelectors.forecastRequest);
 
     switch (weatherRequest) {
         case false:
@@ -22,5 +24,6 @@ export function WeatherCard({ position }) {
 
     return <div className='cardWrapper'>
         {weatherRequest === 'success' ? <WeatherCommonInfo /> : ''}
+        {forecastRequest === 'success' ? <WeatherForecast /> : ''}
     </div>
 }
