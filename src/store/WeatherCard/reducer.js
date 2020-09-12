@@ -6,7 +6,7 @@ const initialState = {
     forecastRequest: false,
     weatherInfo: null,
     inputValue: '',
-    forecast: null
+    forecast: []
 };
 
 
@@ -47,9 +47,6 @@ export function reducer(state = initialState, action) {
                 const weather = {};
                 const KELVIN = -273.15;
 
-
-
-
                 dayForecast.weather.map((el) => {
                     weather.main = el.main;
                     weather.description = el.description;
@@ -60,9 +57,7 @@ export function reducer(state = initialState, action) {
                     weather: weather,
                     main: {
                         temp: Math.round(dayForecast.main.temp + KELVIN),
-                        humidity: dayForecast.main.humidity,
                     },
-                    windSpeed: dayForecast.wind.speed,
                 };
             }
             const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -142,9 +137,14 @@ export function reducer(state = initialState, action) {
                     forecast.day5 = weather;
                 }
             }
+
+            const forecastArray = [];
+            for (const [key, value] of Object.entries(forecast)) {
+                forecastArray.push(value);
+            }
             return {
                 ...state,
-                forecast: forecast,
+                forecast: forecastArray,
                 forecastRequest: 'success'
             }
 
