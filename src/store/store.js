@@ -2,6 +2,7 @@ import { WrapReducer } from "./WeatherWrap";
 import { CardReducer } from "./WeatherCard";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+
 import thunk from 'redux-thunk';
 const { createStore, combineReducers, applyMiddleware } = require("redux");
 

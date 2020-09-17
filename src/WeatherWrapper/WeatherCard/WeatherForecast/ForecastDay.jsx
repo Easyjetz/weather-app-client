@@ -1,24 +1,18 @@
 import React from "react";
-import { FaSnowflake, FaCloud } from "react-icons/fa";
+import { weatherIcons } from "../../../icons";
+
+import style from "./ForecastDay.module.css";
 
 export function ForecastDay({ name, weather, main }) {
-  let Icon = null;
-  let weatherStatus = null;
-  switch (name) {
-    case "Clouds":
-      Icon = <FaCloud />;
-      weatherStatus = "cloudy";
-
-    case "Snow":
-  }
-
   return (
     <div className="dayForecastWrap">
       <div className="dayOfWeek">{name}</div>
       <div className="weatherIcon">
-        <FaSnowflake color="#adb5bd" />
+        <img src={weatherIcons[weather.icon]} alt="" />
       </div>
-      <div className="temperature">{main.temp}</div>
+      <div className="temperature">
+        {main.temp} <span>&#176;</span>
+      </div>
       <div>{weather.main}</div>
     </div>
   );

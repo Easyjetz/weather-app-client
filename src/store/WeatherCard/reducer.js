@@ -24,6 +24,7 @@ export function reducer(state = initialState, action) {
 
             action.payload.weather.map(el => {
                 weather.main = el.main;
+                weather.icon = el.icon;
                 weather.description = el.description;
             });
 
@@ -49,6 +50,7 @@ export function reducer(state = initialState, action) {
 
                 dayForecast.weather.map((el) => {
                     weather.main = el.main;
+                    weather.icon = el.icon;
                     weather.description = el.description;
                 });
 
