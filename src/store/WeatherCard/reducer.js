@@ -2,16 +2,27 @@
 import * as types from './types';
 
 const initialState = {
+    isAllowedGeo: false,
+    position: {},
     weatherRequest: false,
     forecastRequest: false,
-    weatherInfo: null,
+    weatherInfo: {},
     inputValue: '',
-    forecast: []
+    forecast: [],
 };
 
 
 export function reducer(state = initialState, action) {
     switch (action.type) {
+        case types.GEO_REQUEST_SUCCESS:
+            return {
+                ...state,
+                isAllowedGeo: action.payload.allowedGeo,
+                position: {
+                    latitude: action.payload.latitude,
+                    longitude: action.payload.longitude,
+                }
+            }
         case types.CHANGE_SEARCH_INPUT:
             return { ...state, inputValue: action.payload };
 
@@ -19,8 +30,13 @@ export function reducer(state = initialState, action) {
         case types.FETCH_WEATHER_REQUEST:
             return { ...state, weatherRequest: true }
 
+        case types.FETCH_FORECAST_REQUEST:
+            return { ...state, forecastRequest: true }
+
         case types.RECEIVE_WEATHER_INFO:
             const weather = {};
+
+            console.log(action.payload);
 
             action.payload.weather.map(el => {
                 weather.main = el.main;
@@ -36,6 +52,7 @@ export function reducer(state = initialState, action) {
                     main: action.payload.main,
                     weather: weather,
                     wind: action.payload.wind,
+                    country: action.payload.sys.country,
                 },
                 weatherRequest: 'success'
             }

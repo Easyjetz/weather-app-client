@@ -1,8 +1,11 @@
 import * as types from './types';
 
+export const geoRequestSuccess = value => ({ type: types.GEO_REQUEST_SUCCESS, payload: value });
+
 export const searchInputChange = (value) => ({ type: types.CHANGE_SEARCH_INPUT, payload: value });
 
 export const fetchWeatherRequest = () => ({ type: types.FETCH_WEATHER_REQUEST });
+export const fetchForecastRequest = () => ({ type: types.FETCH_FORECAST_REQUEST });
 
 
 export const receiveWeatherInfo = data => {
@@ -26,6 +29,7 @@ export function cityFetchWeather(city) {
             .then(response => response.json()).then(data => dispatch(receiveWeatherInfo(data)))
             .catch(err => console.log(err));
 
+        dispatch(fetchForecastRequest());
         fetch(forecastWeatherUrl)
             .then(response => response.json()).then(data => dispatch(receiveForecastInfo(data)))
             .catch(err => console.log(err));
@@ -46,6 +50,8 @@ export function geolocationFetchWeather(lat, lon) {
                 console.log(err);
             });
 
+
+        dispatch(fetchForecastRequest());
         fetch(forecastWeatherUrl)
             .then(response => response.json()).then(data => dispatch(receiveForecastInfo(data)))
             .catch(err => console.log(err));

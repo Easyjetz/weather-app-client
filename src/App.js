@@ -1,12 +1,12 @@
 import React from 'react';
-import { WeatherWrapper } from './WeatherWrapper';
+import { WeatherCard } from './WeatherCard';
 
 
 
 
 
 function App(props) {
-    return <WeatherWrapper />
+    return <WeatherCard />
 }
 
 export default App;

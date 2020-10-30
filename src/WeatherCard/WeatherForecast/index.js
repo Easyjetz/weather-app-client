@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { CardSelectors } from "../../../store/WeatherCard";
+import { CardSelectors } from "../../store/WeatherCard";
 import { ForecastDay } from "./ForecastDay";
+import { ForecastContainer } from './ForecastElements';
 
 
 
@@ -17,10 +18,8 @@ export function WeatherForecast() {
   });
 
   return (
-    <div className="forecastInfo">
-      <div className="forecastDays">
-        {forecastElements}
-      </div>
-    </div>
+    <ForecastContainer>
+      {forecastElements}
+    </ForecastContainer>
   );
 }
