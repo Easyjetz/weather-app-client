@@ -43,9 +43,8 @@ export function WeatherCard() {
 
     return <WeatherWrapper>
         <Search />
-        <CardWrapper>
-            {weatherRequest === 'success' ? <WeatherCommonInfo /> : ''}
-            {forecastRequest === 'success' ? <WeatherForecast /> : ''}
-        </CardWrapper>
+
+        {weatherRequest === 'success' ? <WeatherCommonInfo /> : ''}
+        {forecastRequest === 'success' ? <WeatherForecast /> : ''}
     </WeatherWrapper>
 }

@@ -6,61 +6,70 @@ export const GlobalStyle = createGlobalStyle`
     body {
         background-image: url(${bg});
         background-repeat: no-repeat;
-        background-size: cover
+        background-size: cover;
+    }
+    * {
+        box-sizing: border-box;
     }
 `;
 
-export const WeatherWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+export const Container = styled.div`
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
 `;
 
+export const WeatherWrapper = styled.div``;
 
-export const CardWrapper = styled.div`
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: 'Open Sans', sans-serif;
-`;
+
+// export const CardWrapper = styled.div`
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
+// `;
 
 
 export const InfoWrapper = styled.div`
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 30px 0;
+    font-weight: 300;
+    @media(max-width: 900px) {
+
+    }
 `;
 
 export const InfoBlock = styled.div``;
 
 export const InfoGeo = styled.p`
     font-size: 28px;
-    font-weight: 300;
+    @media(max-width: 900px) {
+        font-size: 22px;
+    }
 `;
 export const InfoTemp = styled.p`
     font-size: 48px;
     padding: 10px 0;
+    @media(max-width: 900px) {
+        font-size: 30px;
+    }
 `;
 export const InfoMain = styled.p`
-    font-weight: 300;
     font-size: 22px;
+    @media(max-width: 900px) {
+        font-size: 18px;
+    }
 `;
 
 export const ImgBlock = styled.div``;
 export const Img = styled.img``;
 
-export const InfoFooter = styled.div`
-    font-weight: 300;
-    font-size: 18px;
-    width: 250px;
-    display: flex;
-    justify-content: space-between;
-`;
 
-export const InfoHumidity = styled.div``;
-export const InfoWind = styled.div``;
+export const InfoHumidity = styled.span`
+        padding-right: 20px;
+`;
+export const InfoWind = styled.span`
+        padding-left: 20px;
+`;

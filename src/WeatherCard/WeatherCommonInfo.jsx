@@ -31,11 +31,10 @@ export function WeatherCommonInfo() {
         <ImgBlock>
         <Img src={Icons[weather.icon]} />
       </ImgBlock>
+      <InfoHumidity>Humidity: {main.humidity} %</InfoHumidity>
+      <InfoWind>Wind: {wind.speed} м/c</InfoWind>
+
       </InfoBlock>
-      <InfoFooter>
-          <InfoHumidity>Humidity: {main.humidity} %</InfoHumidity>
-          <InfoWind>Wind: {wind.speed} м/c</InfoWind>
-      </InfoFooter>
     </InfoWrapper>
   );
 }

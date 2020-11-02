@@ -23,7 +23,8 @@ export function SearchInput(props) {
   }
 
   return (
-    <InputBlock>
+    // нужно попробовать иконку добавить в css
+      <InputBlock>
       <IconFaSearch />
       <Input
         type="text"
@@ -32,6 +33,6 @@ export function SearchInput(props) {
         ref={inputRef}
         placeholder="Введите название города"
       />
-    </InputBlock>
+      </InputBlock>
   );
 }
