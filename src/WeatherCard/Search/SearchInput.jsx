@@ -23,7 +23,6 @@ export function SearchInput(props) {
   }
 
   return (
-    // нужно попробовать иконку добавить в css
       <InputBlock>
       <IconFaSearch />
       <Input
@@ -31,7 +30,7 @@ export function SearchInput(props) {
         onChange={onInputChange}
         onKeyPress={onInputCityRequest}
         ref={inputRef}
-        placeholder="Введите название города"
+        placeholder="Введите город"
       />
       </InputBlock>
   );

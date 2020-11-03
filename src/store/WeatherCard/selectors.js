@@ -2,7 +2,7 @@ export const cardReducer = state => state.CardReducer;
 
 
 export const position = state => cardReducer(state).position;
-export const isAllowedGeo = state => cardReducer(state).isAllowedGeo;
+export const geoRequest = state => cardReducer(state).geoRequest;
 
 
 export const weatherRequest = state => cardReducer(state).weatherRequest;

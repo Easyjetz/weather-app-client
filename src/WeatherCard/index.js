@@ -5,46 +5,43 @@ import { CardActions, CardSelectors } from "../store/WeatherCard";
 import { WeatherCommonInfo } from "./WeatherCommonInfo";
 import { WeatherForecast } from "./WeatherForecast";
 import { Search } from "./Search";
-import { CardWrapper, WeatherWrapper } from "./WrapElements";
 
 
 export function WeatherCard() {
 
-    const { geoRequestSuccess, geolocationFetchWeather } = useActions(CardActions);
+    const { geoRequestSucceeded, geolocationFetchWeather } = useActions(CardActions);
 
-    const isAllowedGeo = useSelector(CardSelectors.isAllowedGeo);
+    const geoRequest = useSelector(CardSelectors.geoRequest);
     const position = useSelector(CardSelectors.position);
 
     const weatherRequest = useSelector(CardSelectors.weatherRequest);
     const forecastRequest = useSelector(CardSelectors.forecastRequest);
 
-    if (!isAllowedGeo) {
+    if (!geoRequest) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
-                const allowedGeo = true;
+                const geoRequest = true;
                 const latitude = position.coords.latitude;
                 const longitude = position.coords.longitude;
 
-                return geoRequestSuccess({ allowedGeo, latitude, longitude });
+                return geoRequestSucceeded({ geoRequest, latitude, longitude });
             });
         }
     } else {
         const { latitude, longitude } = position;
         // отредактировать запрос + у меня нету такого же запроса на прогноз погоды.
-        switch (weatherRequest) {
-            case false:
-                geolocationFetchWeather(latitude, longitude);
-            case true:
-                console.log('выполняется запрос')
+
+        if (!weatherRequest) {
+            geolocationFetchWeather(latitude, longitude);
         }
     }
 
 
 
-    return <WeatherWrapper>
+    return <div className='WeatherWrapper'>
         <Search />
-
+        {weatherRequest === 'failed' ? '' : ''}
         {weatherRequest === 'success' ? <WeatherCommonInfo /> : ''}
         {forecastRequest === 'success' ? <WeatherForecast /> : ''}
-    </WeatherWrapper>
+    </div>
 }

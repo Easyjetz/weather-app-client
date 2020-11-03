@@ -1,21 +1,21 @@
 import React from "react";
 import { weatherIcons } from "../../icons";
-import { DayOfWeek, ForecastImage, ForecastItem, ForecastMain, ForecastTemp, ImageWrapper, Span } from "./ForecastElements";
+import {ForecastImage, ForecastItem, ForecastMain} from "./ForecastElements";
 
 
-export function ForecastDay({ name, weather, main }) {
+export function ForecastDay({ dayOfWeek, weather, temp }) {
   return (
     <ForecastItem>
-      <DayOfWeek>{name}</DayOfWeek>
-      <ImageWrapper>
+      <div className='city'>{dayOfWeek}</div>
+      <div className='imageBlock'>
         <ForecastImage
           src={weatherIcons[weather.icon]}
         />
-      </ImageWrapper>
-      <ForecastTemp>
-        {main.temp} <Span>&#176; C</Span>
-      </ForecastTemp>
-      <ForecastMain>{weather.main}</ForecastMain>
+      </div>
+      <div className='tempBlock'>
+        {temp} <span>&#176; C</span>
+      </div>
+      <ForecastMain>{weather.weatherType}</ForecastMain>
     </ForecastItem>
   );
 }

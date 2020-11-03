@@ -47,23 +47,3 @@ export const IconFaSearch = styled(FaSearch)`
     top: 2px;
     left: 19px;
 `;
-
-
-export const StyledSearchButton = styled.button`
-  border: none;
-  border-radius: 20px;
-  background-color: #111;
-  display: inline;
-  margin-left: 16px;
-  color: #fff;
-  padding: 10px 18px;
-  :hover {
-    cursor: pointer;
-  }
-  @media (max-width: 448px) {
-        display: block;
-        margin: 10px auto 0;
-        width: 30%;
-    }
-`;
-

@@ -5,14 +5,14 @@ import { CardSelectors } from "../store/WeatherCard";
 
 import nt_clear from "../icons/nt_clear.png";
 import fewCloudsN from "../icons/nt_partlycloudy.png";
-import { Img, ImgBlock, InfoBlock, InfoFooter, InfoGeo, InfoHumidity, InfoMain, InfoTemp, InfoWind, InfoWrapper } from "./WrapElements";
+import { InfoGeo, InfoHumidity, InfoMain, InfoTemp, InfoWind, InfoWrapper } from "./WrapElements";
 
 export function WeatherCommonInfo() {
-  const { name, main, weather, wind, country } = useSelector(
+  const { cityName, temp, weather, wind, country, humidity } = useSelector(
     CardSelectors.weatherInfo
   );
   const KELVIN = -273.15;
-  const temperature = Math.round(main.temp + KELVIN);
+  const temperature = Math.round(temp + KELVIN);
 
   const Icons = Object.assign({}, weatherIcons);
   Icons["01n"] = nt_clear;
@@ -20,21 +20,20 @@ export function WeatherCommonInfo() {
 
   return (
     <InfoWrapper>
-      <InfoBlock>
+      <div className='InfoBlock'>
         <InfoGeo>
-          {name}, {country}
+          {cityName}, {country}
         </InfoGeo>
         <InfoTemp>
           {temperature} <span>&#176; C</span>
         </InfoTemp>
         <InfoMain>{weather.main}</InfoMain>
-        <ImgBlock>
-        <Img src={Icons[weather.icon]} />
-      </ImgBlock>
-      <InfoHumidity>Humidity: {main.humidity} %</InfoHumidity>
+        <div className='imgBlock'>
+          <img src={Icons[weather.icon]} alt='icon' />
+        </div>
+      <InfoHumidity>Humidity: {humidity} %</InfoHumidity>
       <InfoWind>Wind: {wind.speed} м/c</InfoWind>
-
-      </InfoBlock>
+      </div>
     </InfoWrapper>
   );
 }

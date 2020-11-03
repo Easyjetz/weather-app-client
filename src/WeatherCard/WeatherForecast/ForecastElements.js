@@ -45,14 +45,10 @@ export const ForecastItem = styled.div`
     }
 `;
 
-export const DayOfWeek = styled.div``;
-export const ImageWrapper = styled.div``;
 export const ForecastImage = styled.img`
     padding: 10px 0 6px;
 `;
 
-export const ForecastTemp = styled.div``;
 export const ForecastMain = styled.div`
     padding-top: 8px;
 `;
-export const Span = styled.span``;

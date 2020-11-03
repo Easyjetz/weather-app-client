@@ -10,10 +10,10 @@ export function WeatherForecast() {
   const forecast = useSelector(CardSelectors.forecast);
 
   const forecastElements = forecast.map(day => {
-    const { name, weather, main, windSpeed } = day;
-    return <ForecastDay name={name}
+    const { dayOfWeek, weather, temp, windSpeed } = day;
+    return <ForecastDay dayOfWeek={dayOfWeek}
       weather={weather}
-      main={main}
+      temp={temp}
       windSpeed={windSpeed} />
   });
 
