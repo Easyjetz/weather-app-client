@@ -18,7 +18,8 @@ export function SearchInput(props) {
 
   function onInputCityRequest(e) {
     if (e.key === "Enter") {
-      cityFetchWeather(inputValue);
+
+      cityFetchWeather(inputValue.trim());
     }
   }
 
