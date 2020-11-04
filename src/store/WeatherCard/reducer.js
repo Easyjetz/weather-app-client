@@ -38,11 +38,11 @@ export function reducer(state = initialState, action) {
 
         case types.WEATHER_REQUEST_FAILED:
             console.log(`Ошибка прошла! ${action.payload}`);
-            return { ...state, weatherRequest: 'failed', weatherRequestError: action.payload }
+            return { ...state, weatherRequest: 'failed', weatherRequestError: action.payload.response.data }
 
         case types.FORECAST_REQUEST_FAILED:
             console.log(`Ошибка прошла! ${action.payload}`);
-            return { ...state, forecastRequest: 'failed', forecastRequestError: action.payload }
+            return { ...state, forecastRequest: 'failed', forecastRequestError: action.payload.response.data }
 
         case types.RECEIVED_WEATHER_INFO:
             const weather = {};

@@ -22,7 +22,6 @@ export const getForecast = (forecastData) => {
     const days = forecastData.reduce(((acc, list) => {
         const currentDate = new Date(list.dt_txt).getDate();
         const hour = new Date(list.dt_txt).getHours();
-        console.log(acc.date);
         if (currentDate > acc.date && hour === 9) {
             acc.date = currentDate;
             acc.forecast.push(getDayWeather(list));
@@ -31,5 +30,4 @@ export const getForecast = (forecastData) => {
     }), { date: new Date().getDate(), forecast: [] });
 
     return days.forecast.map(day => day);
-
 }

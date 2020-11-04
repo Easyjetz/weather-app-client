@@ -5,6 +5,7 @@ import { CardActions, CardSelectors } from "../store/WeatherCard";
 import { WeatherCommonInfo } from "./WeatherCommonInfo";
 import { WeatherForecast } from "./WeatherForecast";
 import { Search } from "./Search";
+import { ErrorMessage } from "./ErrorMessage";
 
 
 export function WeatherCard() {
@@ -29,7 +30,6 @@ export function WeatherCard() {
         }
     } else {
         const { latitude, longitude } = position;
-        // отредактировать запрос + у меня нету такого же запроса на прогноз погоды.
 
         if (!weatherRequest) {
             geolocationFetchWeather(latitude, longitude);
@@ -40,7 +40,7 @@ export function WeatherCard() {
 
     return <div className='WeatherWrapper'>
         <Search />
-        {weatherRequest === 'failed' ? '' : ''}
+        {weatherRequest === 'failed' ? <ErrorMessage /> : ''}
         {weatherRequest === 'success' ? <WeatherCommonInfo /> : ''}
         {forecastRequest === 'success' ? <WeatherForecast /> : ''}
     </div>

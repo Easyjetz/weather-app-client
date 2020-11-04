@@ -11,5 +11,7 @@ export const forecastRequest = state => cardReducer(state).forecastRequest;
 export const weatherInfo = state => cardReducer(state).weatherInfo;
 export const forecast = state => cardReducer(state).forecast;
 
+export const weatherRequestError = state => cardReducer(state).weatherRequestError;
+
 export const inputValue = state => cardReducer(state).inputValue;
 

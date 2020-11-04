@@ -26,6 +26,7 @@ const weatherIcons = {
     "13n": snow,
     "50d": fog,
     "50n": fog,
+    "unknown": unknown,
 }
 
 export { weatherIcons };
