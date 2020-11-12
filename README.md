@@ -9,4 +9,5 @@
 - React.js
 - Redux
 - Redux-Thunk
+- Axios
 - Styled Components
