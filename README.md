@@ -9,5 +9,7 @@
 - React.js
 - Redux
 - Redux-Thunk
-- Axios
 - Styled Components
+- OpenWeather API
+- Axios
+
