@@ -20,9 +20,10 @@ export const getForecast = (forecastData) => {
     }
 
     const days = forecastData.reduce(((acc, list) => {
-        const currentDate = new Date(list.dt_txt).getDate();
+        const forecastDate = new Date(list.dt_txt).getDate();
+        const today = acc.date;
         const hour = new Date(list.dt_txt).getHours();
-        if (currentDate > acc.date && hour === 9) {
+        if (((forecastDate > today) || (today > 27 && forecastDate === 1)) && (hour === 9)) {
             acc.date = currentDate;
             acc.forecast.push(getDayWeather(list));
         }
