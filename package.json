@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Easyjetz.github.io/weatherApp",
+  "homepage": "https://easyjetz.github.io/weather-app-client",
   "dependencies": {
     "@babel/core": "7.9.0",
     "@svgr/webpack": "4.3.3",
